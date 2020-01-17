@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    android:rowCount="4">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:text="@string/look_at_my_gui"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/click_here" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/check_this_out" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_columnSpan="1"
+        app:srcCompat="@drawable/flag" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="1"
+        android:text="@string/switch_on_off" />
+
+    <EditText
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:hint="@string/type_here" />
+
+</GridLayout>

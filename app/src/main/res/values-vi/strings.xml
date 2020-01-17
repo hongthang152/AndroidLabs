@@ -3,4 +3,14 @@
     <string name="app_name">AndroidLabs</string>
     <string name="hello_message">Xin chao</string>
     <string name="ButtonText">I\’m a button</string>
+    <string name="look_at_my_gui">Nhìn cái GUI của tôi này</string>
+    <string name="click_here">Bấm đây</string>
+    <string name="check_this_out">Xem cái này!</string>
+    <string name="switch_on_off">Bật/tắt</string>
+    <string name="type_here">Đánh vào đây</string>
+    <string name="toast_message">Đây là nhiều thông tin hơn</string>
+    <string name="switch_messasge">Công tắc bây giờ</string>
+    <string name="message_on">bật</string>
+    <string name="message_off">tắt</string>
+    <string name="undo">Quay lại</string>
 </resources>
