@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_linear);
+        setContentView(R.layout.activity_main_grid);
         findViewById(R.id.checkBox).setOnClickListener(v -> Toast.makeText(MainActivity.this, getResources().getText(R.string.toast_message), Toast.LENGTH_LONG).show());
 
         ((Switch) findViewById(R.id.switch1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -47,6 +47,7 @@
         android:layout_below="@id/checkBox"
         android:layout_alignLeft="@id/checkBox"
         android:layout_alignTop="@id/imageButton"
+        android:layout_alignParentRight="true"
         android:layout_toEndOf="@id/imageButton"
         android:layout_toRightOf="@id/imageButton"
         android:text="@string/switch_on_off" />
