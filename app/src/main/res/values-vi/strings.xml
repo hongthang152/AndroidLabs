@@ -13,4 +13,16 @@
     <string name="message_on">bật</string>
     <string name="message_off">tắt</string>
     <string name="undo">Quay lại</string>
+    <string name="type_email_here">Nhập email đây</string>
+    <string name="enter_your_email_addr">Nhập email của bạn</string>
+    <string name="type_your_pass">Nhập mật khẩu của bạn</string>
+    <string name="shared_preference_email">email</string>
+    <string name="login">Đăng nhập</string>
+    <string name="your_profile">Tài khoản của bạn</string>
+    <string name="your_name">Tên của bạn:</string>
+    <string name="enter_your_name">Nhập tên của bạn</string>
+    <string name="your_email">Email của bạn:</string>
+    <string name="enter_your_email">Nhập email của bạn</string>
+    <string name="your_picture">Hình của bạn:</string>
+    <string name="click_button_above_to_take_pic">Bấm nút để chụp hình</string>
 </resources>

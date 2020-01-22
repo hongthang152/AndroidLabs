@@ -12,4 +12,16 @@
     <string name="message_on">on</string>
     <string name="message_off">off</string>
     <string name="undo">Undo</string>
+    <string name="type_email_here">Type email here</string>
+    <string name="enter_your_email_addr">Enter your email address</string>
+    <string name="type_your_pass">Type your password</string>
+    <string name="shared_preference_email">email</string>
+    <string name="login">LOGIN</string>
+    <string name="your_profile">Your profile</string>
+    <string name="your_name">Your name:</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="your_email">Your email:</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="your_picture">Your picture:</string>
+    <string name="click_button_above_to_take_pic">Click the button above to take a picture</string>
 </resources>

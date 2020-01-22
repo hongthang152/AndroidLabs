@@ -1,29 +1,34 @@
 package com.example.androidlabs;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
+import android.widget.EditText;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_grid);
-        findViewById(R.id.checkBox).setOnClickListener(v -> Toast.makeText(MainActivity.this, getResources().getText(R.string.toast_message), Toast.LENGTH_LONG).show());
+        setContentView(R.layout.login_activity);
 
-        ((Switch) findViewById(R.id.switch1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                Snackbar snackBar = Snackbar.make(findViewById(R.id.main_layout), getResources().getText(R.string.switch_messasge) + " " +
-                        getResources().getText(isChecked ? R.string.message_on : R.string.message_off), Snackbar.LENGTH_LONG);
-                snackBar.setAction(getResources().getText(R.string.undo), click -> buttonView.setChecked(!isChecked));
-                snackBar.show();
-            }
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.shared_preference_email), Context.MODE_PRIVATE);
+        String email = sharedPref.getString(getString(R.string.shared_preference_email), "");
+        EditText emailField = findViewById(R.id.email_field);
+        emailField.setText(email);
+
+        findViewById(R.id.login_button).setOnClickListener(e -> {
+            SharedPreferences sharedPrefLogin = getApplicationContext().getSharedPreferences(getString(R.string.shared_preference_email), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPrefLogin.edit();
+            editor.putString(getString(R.string.shared_preference_email), ((EditText)findViewById(R.id.email_field)).getText().toString());
+            editor.commit();
+
+            Intent goToProfile = new Intent(getBaseContext(), ProfileActivity.class);
+            goToProfile.putExtra("EMAIL", emailField.getText().toString());
+            startActivity(goToProfile);
         });
     }
 }
