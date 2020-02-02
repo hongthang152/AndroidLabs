@@ -28,6 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent fromMain = getIntent();
         ((EditText)findViewById(R.id.email_field)).setText(fromMain.getStringExtra("EMAIL"));
+
+        findViewById(R.id.go_to_chat_btn).setOnClickListener(e -> {
+            startActivity(new Intent(getBaseContext(), ChatRoomActivity.class));
+        });
     }
 
     @Override

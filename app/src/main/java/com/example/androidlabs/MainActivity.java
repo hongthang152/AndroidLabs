@@ -31,4 +31,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToProfile);
         });
     }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SharedPreferences sharedPrefLogin = getApplicationContext().getSharedPreferences(getString(R.string.shared_preference_email), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefLogin.edit();
+        editor.putString(getString(R.string.shared_preference_email), ((EditText)findViewById(R.id.email_field)).getText().toString());
+        editor.commit();
+    }
 }

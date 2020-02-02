@@ -25,4 +25,9 @@
     <string name="enter_your_email">Nhập email của bạn</string>
     <string name="your_picture">Hình của bạn:</string>
     <string name="click_button_above_to_take_pic">Bấm nút để chụp hình</string>
+    <string name="delete_confirm_msg">Bạn có muốn xóa không ?</string>
+    <string name="the_database_id_is">ID của vật này trong CSDL:</string>
+    <string name="the_selected_row_is">Dòng này là dòng thứ:</string>
+    <string name="yes">Đúng</string>
+    <string name="no">Không</string>
 </resources>
