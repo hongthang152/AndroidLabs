@@ -29,4 +29,7 @@
     <string name="the_database_id_is">The database id is:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+    <string name="go_to_chat">Go to chat</string>
 </resources>

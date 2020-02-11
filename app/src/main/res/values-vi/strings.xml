@@ -30,4 +30,7 @@
     <string name="the_selected_row_is">Dòng này là dòng thứ:</string>
     <string name="yes">Đúng</string>
     <string name="no">Không</string>
+    <string name="send">Gửi</string>
+    <string name="receive">Nhận</string>
+    <string name="go_to_chat">Tới phòng chat</string>
 </resources>

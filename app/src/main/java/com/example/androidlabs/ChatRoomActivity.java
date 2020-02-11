@@ -1,7 +1,11 @@
 package com.example.androidlabs;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -14,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidlabs.adapters.MessageListAdapter;
 import com.example.androidlabs.model.Message;
+import com.example.androidlabs.openers.ChatDatabaseOpener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         List<Message> messages = new ArrayList<>();
 
+        ChatDatabaseOpener db = new ChatDatabaseOpener(this);
+        Cursor cursor = db.getReadableDatabase().query(ChatDatabaseOpener.MESSAGE_TABLE_NAME, null, null, null, null, null, null);
+        if(cursor.moveToFirst()) {
+            while(!cursor.isAfterLast()) {
+                String msgText = cursor.getString(cursor.getColumnIndex(ChatDatabaseOpener.MESSAGE_TABLE_TEXT_COL));
+                Integer msgIsSend = cursor.getInt(cursor.getColumnIndex(ChatDatabaseOpener.MESSAGE_TABLE_IS_SEND_COL));
+                Long id = cursor.getLong(cursor.getColumnIndex(ChatDatabaseOpener.MESSAGE_TABLE_ID_COL));
+                messages.add(new Message(msgText, msgIsSend == 1, id));
+
+                cursor.moveToNext();
+            }
+        }
+
+        printCursor(cursor, db.getReadableDatabase().getVersion());
+
         ListView listView =  findViewById(R.id.list_view);
 
         BaseAdapter messageListAdapter = new MessageListAdapter(messages, getBaseContext());
@@ -35,32 +55,67 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendBtn = findViewById(R.id.send_btn);
         EditText input = findViewById(R.id.message_input);
 
-        sendBtn.setOnClickListener(getSendOrReceiveListener(true, messages, input, messageListAdapter));
+        sendBtn.setOnClickListener(getSendOrReceiveListener(true, messages, input, messageListAdapter, db.getWritableDatabase()));
 
         Button receiveBtn = findViewById(R.id.receive_btn);
-        receiveBtn.setOnClickListener(getSendOrReceiveListener(false, messages, input, messageListAdapter));
+        receiveBtn.setOnClickListener(getSendOrReceiveListener(false, messages, input, messageListAdapter, db.getWritableDatabase()));
 
-        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        listView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder
                     .setTitle(getString(R.string.delete_confirm_msg))
                     .setMessage(getString(R.string.the_selected_row_is) + " " + position + "\n" +
                         getString(R.string.the_database_id_is) + " " + id)
                     .setPositiveButton(R.string.yes, (DialogInterface dialog, int which) -> {
+                        db.getWritableDatabase().delete(ChatDatabaseOpener.MESSAGE_TABLE_NAME,
+                                ChatDatabaseOpener.MESSAGE_TABLE_ID_COL + " = ?",
+                                new String[]{Long.toString(messageListAdapter.getItemId(position))});
                         messages.remove(position);
                         messageListAdapter.notifyDataSetChanged();
                     })
                     .setNegativeButton(R.string.no, null)
                     .show();
+            return true;
         });
     }
 
-    private View.OnClickListener getSendOrReceiveListener(boolean isSend, List<Message> messages, EditText input, BaseAdapter adapter) {
+    private View.OnClickListener getSendOrReceiveListener(boolean isSend, List<Message> messages, EditText input, BaseAdapter adapter, SQLiteDatabase db) {
         return e -> {
-            Message msg = new Message(input.getText().toString(), isSend);
+            ContentValues cValues = new ContentValues();
+            cValues.put(ChatDatabaseOpener.MESSAGE_TABLE_IS_SEND_COL, isSend);
+            cValues.put(ChatDatabaseOpener.MESSAGE_TABLE_TEXT_COL, input.getText().toString());
+
+            Long id = db.insert(ChatDatabaseOpener.MESSAGE_TABLE_NAME, ChatDatabaseOpener.MESSAGE_TABLE_ID_COL, cValues);
+
+            Message msg = new Message(input.getText().toString(), isSend, id);
             messages.add(msg);
+
             adapter.notifyDataSetChanged();
             input.setText("");
         };
+    }
+
+    private void printCursor(Cursor c, int version) {
+        Log.i(this.toString(),"Database version: " + version);
+        Log.i(this.toString(), "Number of columns in the cursor: " + c.getColumnCount());
+        StringBuilder colNamesBuilder = new StringBuilder();
+        for(String col : c.getColumnNames()) {
+            colNamesBuilder.append(col).append(", ");
+        }
+        Log.i(this.toString(), "The names of the columns in the cursor: " + colNamesBuilder.toString());
+        Log.i(this.toString(), "The number of results in the cursor: " + c.getCount());
+
+        if(c.moveToFirst()) {
+            StringBuilder resBuilder = new StringBuilder();
+            while(!c.isAfterLast()) {
+                for(String col : c.getColumnNames()) {
+                    resBuilder.append(c.getString(c.getColumnIndex(col)))
+                        .append(", ");
+                }
+                resBuilder.append("\n");
+                c.moveToNext();
+            }
+            Log.i(this.toString(), "Result: \n" + resBuilder.toString());
+        }
     }
 }
