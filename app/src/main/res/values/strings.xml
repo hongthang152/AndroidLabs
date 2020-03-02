@@ -32,4 +32,9 @@
     <string name="send">Send</string>
     <string name="receive">Receive</string>
     <string name="go_to_chat">Go to chat</string>
+    <string name="go_to_weather_forecast">Go to weather forecast</string>
+    <string name="current_temp">Current Temperature:</string>
+    <string name="min_temp_caption">Min temperature:</string>
+    <string name="max_temp_caption">Max temperature:</string>
+    <string name="uv_rating_caption">UV Rating:</string>
 </resources>

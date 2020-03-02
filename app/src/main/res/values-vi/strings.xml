@@ -33,4 +33,9 @@
     <string name="send">Gửi</string>
     <string name="receive">Nhận</string>
     <string name="go_to_chat">Tới phòng chat</string>
+    <string name="go_to_weather_forecast">Đi tới dự báo thời tiết</string>
+    <string name="current_temp">Nhiệt độ hiện tại:</string>
+    <string name="max_temp_caption">"Nhiệt độ cao nhất: "</string>
+    <string name="min_temp_caption">"Nhiệt độ thấp nhất: "</string>
+    <string name="uv_rating_caption">"Mức độ UV: "</string>
 </resources>

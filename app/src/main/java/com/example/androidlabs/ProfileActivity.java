@@ -26,6 +26,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.go_to_weather_forecast_btn).setOnClickListener(e -> {
+            Intent weatherForecastIntent = new Intent(getBaseContext(), WeatherForecastActivity.class);
+            startActivity(weatherForecastIntent);
+        });
+
         Intent fromMain = getIntent();
         ((EditText)findViewById(R.id.email_field)).setText(fromMain.getStringExtra("EMAIL"));
 
