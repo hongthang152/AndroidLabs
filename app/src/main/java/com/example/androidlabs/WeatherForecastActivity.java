@@ -143,6 +143,13 @@ public class WeatherForecastActivity extends AppCompatActivity {
             ProgressBar progressBar = findViewById(R.id.progress_bar);
             progressBar.setVisibility(View.INVISIBLE);
         }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            ProgressBar progressBar = findViewById(R.id.progress_bar);
+            progressBar.setProgress(values[0]);
+        }
     }
 
     @Override
