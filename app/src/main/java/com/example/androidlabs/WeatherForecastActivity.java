@@ -54,6 +54,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
                 factory.setNamespaceAware(false);
                 xpp.setInput(response, "UTF-8");
 
+
                 int eventType = xpp.getEventType();
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (eventType == XmlPullParser.START_TAG) {

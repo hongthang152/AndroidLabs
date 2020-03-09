@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,11 +13,14 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.androidlabs.adapters.MessageListAdapter;
 import com.example.androidlabs.model.Message;
@@ -25,12 +29,14 @@ import com.example.androidlabs.openers.ChatDatabaseOpener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatRoomActivity extends AppCompatActivity {
+public class ChatRoomActivity extends AppCompatActivity implements DetailsFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        FrameLayout frameLayout = findViewById(R.id.frame_layout);
 
         List<Message> messages = new ArrayList<>();
 
@@ -69,15 +75,43 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setMessage(getString(R.string.the_selected_row_is) + " " + position + "\n" +
                         getString(R.string.the_database_id_is) + " " + id)
                     .setPositiveButton(R.string.yes, (DialogInterface dialog, int which) -> {
+                        Long msgId = messageListAdapter.getItemId(position);
                         db.getWritableDatabase().delete(ChatDatabaseOpener.MESSAGE_TABLE_NAME,
                                 ChatDatabaseOpener.MESSAGE_TABLE_ID_COL + " = ?",
-                                new String[]{Long.toString(messageListAdapter.getItemId(position))});
+                                new String[]{Long.toString(msgId)});
+
+                        if(frameLayout != null) {
+                            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                                if(fragment.getArguments().getLong("id") == msgId) {
+                                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                                    break;
+                                }
+                            }
+                        }
+
                         messages.remove(position);
                         messageListAdapter.notifyDataSetChanged();
                     })
                     .setNegativeButton(R.string.no, null)
                     .show();
             return true;
+        });
+
+        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("message", messages.get(position).getText());
+            bundle.putLong("id", id);
+            bundle.putBoolean("isSendMsg", messages.get(position).isSend());
+
+            if(frameLayout == null) {
+                Intent intent = new Intent(this, EmptyActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            } else {
+                Fragment detailsFragment = new DetailsFragment();
+                detailsFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, detailsFragment).commit();
+            }
         });
     }
 
@@ -123,5 +157,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

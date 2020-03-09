@@ -38,4 +38,8 @@
     <string name="max_temp_caption">"Nhiệt độ cao nhất: "</string>
     <string name="min_temp_caption">"Nhiệt độ thấp nhất: "</string>
     <string name="uv_rating_caption">"Mức độ UV: "</string>
+    <string name="message_here">Tin nhắn</string>
+    <string name="id_equals">ID=</string>
+    <string name="is_a_send_msg">Là tin nhắn gửi</string>
+    <string name="hide">Giấu</string>
 </resources>
