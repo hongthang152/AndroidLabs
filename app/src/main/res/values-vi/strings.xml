@@ -42,4 +42,14 @@
     <string name="id_equals">ID=</string>
     <string name="is_a_send_msg">Là tin nhắn gửi</string>
     <string name="hide">Giấu</string>
+    <string name="go_to_toolbar_page">Tới trang Toolbar</string>
+    <string name="you_clicked_on_the_overflow_menu">Bạn bấm trên cái overflow menu</string>
+    <string name="you_clicked_on_item_1">Bạn bấm vào vật 1</string>
+    <string name="you_clicked_on_item_2">Bạn bấm vào vật 2</string>
+    <string name="you_clicked_on_item_3">Bạn bấm vào vật 3</string>
+    <string name="chat_page">Trang Chat</string>
+    <string name="weather_forecast">Dự báo thời tiết</string>
+    <string name="go_back_to_login">Đi về trang login</string>
+    <string name="close">Đóng</string>
+    <string name="open">Mở</string>
 </resources>

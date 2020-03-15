@@ -43,4 +43,14 @@
     <string name="id_equals">ID=</string>
     <string name="is_a_send_msg">Is a Send Message</string>
     <string name="hide">Hide</string>
+    <string name="go_to_toolbar_page">Go to Toolbar page</string>
+    <string name="you_clicked_on_the_overflow_menu">You clicked on the overflow menu</string>
+    <string name="you_clicked_on_item_1">You clicked on item 1</string>
+    <string name="you_clicked_on_item_2">You clicked on item 2</string>
+    <string name="you_clicked_on_item_3">You clicked on item 3</string>
+    <string name="chat_page">Chat page</string>
+    <string name="weather_forecast">Weather Forecast</string>
+    <string name="go_back_to_login">Go back to login</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

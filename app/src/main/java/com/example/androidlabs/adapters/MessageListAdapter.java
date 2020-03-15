@@ -1,18 +1,18 @@
 package com.example.androidlabs.adapters;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.ImageView;
+        import android.widget.RelativeLayout;
+        import android.widget.TextView;
 
-import com.example.androidlabs.R;
-import com.example.androidlabs.model.Message;
+        import com.example.androidlabs.R;
+        import com.example.androidlabs.model.Message;
 
-import java.util.List;
+        import java.util.List;
 
 public class MessageListAdapter extends BaseAdapter {
     private Context context;

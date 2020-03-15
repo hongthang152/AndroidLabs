@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/chat_page"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/chat_page" />
+        <item android:id="@+id/weather_forecast"
+            android:title="@string/weather_forecast"
+            android:icon="@drawable/ic_accessibility_black_24dp"/>
+        <item android:id="@+id/go_back_to_login"
+            android:title="@string/go_back_to_login"
+            android:icon="@drawable/ic_arrow_back_black_24dp"/>
+    </group>
+</menu>

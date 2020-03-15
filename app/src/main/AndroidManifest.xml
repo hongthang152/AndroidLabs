@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmptyActivity"></activity>
+        <activity android:name=".TestToolbar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".EmptyActivity" />
         <activity android:name=".WeatherForecastActivity" />
         <activity
             android:name=".ChatRoomActivity"
